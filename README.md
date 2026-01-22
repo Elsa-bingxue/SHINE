@@ -18,17 +18,19 @@ All datasets used in this study are publicly available and obtained from two pre
 
 ### 3.1 Data preparation and alignment
 
-1. **Download the datasets** (see Section 2) and place them into the corresponding folders under the `data/` directory.
+1. **Download the datasets** (see Section 2) and place them into the corresponding folders.
 
 2. **Place the core scripts** in the project directory:
    - `Training.py`
    - `model.py`
    - `preprocess.py`
 
-3. **Run data registration and graph construction** using the `create_data` mode:
+3. **Prepare aligned inputs and graph data**:
 
-   ```bash
-   python preprocess.py --mode create_data
+   - Open the Jupyter notebook used for data preparation (e.g., `create_data.ipynb`).
+   - Execute all cells sequentially to perform cross-modal data registration and graph construction.
+
+   This step generates the aligned inputs and graph-structured data required by SHINE.
    
 ### 3.2 Train SHINE to obtain embeddings
 python Training.py
@@ -36,7 +38,11 @@ python Training.py
 The learned SHINE embeddings will be saved automatically.
 
 ### 3.3 Run downstream analysis using saved embeddings
-Saved_Embedding_Analysis notebook
+ - Open the Jupyter notebook in the Saved_Embedding_Analysis/ directory.
+
+ - Execute all cells sequentially to perform downstream analysis based on the saved SHINE embeddings.
+
+This step includes clustering, visualization, and embedding-based analyses.
 
 
 # References
