@@ -44,7 +44,7 @@ All datasets used in this study are publicly available and obtained from two pre
 
 ### 3.3  **Run downstream analysis using saved embeddings**
 
- - Open the Jupyter notebook in the Saved_Embedding_Analysis/ directory.
+ - Open the Jupyter notebook of Saved_Embedding_Analysis.
 
  - Execute all cells sequentially to perform downstream analysis based on the saved SHINE embeddings.
 
