@@ -1,8 +1,22 @@
 # SHINE: Decoding metabolic–transcriptional microenvironments through higher-order spatial multi-omics integration
 
-## 1. Requirements
-+ Python == 3.8
+## 1. Environment Setup
 
+SHINE can be run within a single Python environment.
+
+### Prerequisites
+- Python **3.8**
+
+### Install environment
+
+We recommend creating a clean environment and installing dependencies from the provided `requirements.txt`.
+
+Using **conda**:
+```bash
+conda create -n shine python=3.8 -y
+conda activate shine
+pip install -r requirements.txt
+ ```
 
 ## 2. Datasets
 All datasets used in this study are publicly available and obtained from two previously published spatial multi-omics studies [[1]](https://www.nature.com/articles/s41587-023-01937-y) and [[2]](https://onlinelibrary.wiley.com/doi/abs/10.1002/anie.202502028). Please find and download the data from:
