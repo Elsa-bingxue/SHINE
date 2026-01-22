@@ -15,5 +15,6 @@ All datasets used in this study are publicly available and obtained from two pre
 
 
 # References
-[1] Vicari, M., Mirzazadeh, R., Nilsson, A. et al. Spatial multimodal analysis of transcriptomes and metabolomes in tissues. Nat Biotechnol 42, 1046–1050 (2024). https://doi.org/10.1038/s41587-023-01937-y
+[1] Vicari, M., Mirzazadeh, R., Nilsson, A. et al. Spatial multimodal analysis of transcriptomes and metabolomes in tissues. Nat Biotechnol 42, 1046–1050 (2024). https://doi.org/10.1038/s41587-023-01937-y.
+
 [2] Godfrey, T. M. et al. Integrating ambient ionization mass spectrometry imaging and spatial transcriptomics on the same cancer tissues to identify rna–metabolite correlations. Angewandte Chemie International Edition 64, e202502028 (2025).  https://doi.org/10.1002/anie.202502028.
