@@ -14,6 +14,9 @@ All datasets used in this study are publicly available and obtained from two pre
 + Cell-type annotations for the three mouse datasets were obtained from the original study in [[1]](https://www.nature.com/articles/s41587-023-01937-y) and can be downloaded from: [Zeisel_stsc_output.csv](https://github.com/Elsa-bingxue/SHINE/tree/main/Mouse%20striatum%20(FMP-10))
 + High-quality single-cell–derived cell-type annotations for human breast cancer were obtained from [[3](https://www.nature.com/articles/s41588-021-00911-1#citeas)] and [GSE176078/GSE176078_Wu_etal_2021_BRCA_scRNASeq.tar.gz](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078#:~:text=Series%20GSE176078%20%20%2011,profiling%20by%20high%20throughput%20sequencing)
 
+## 3. Step-by-step Running
+### 3.1 
+
 
 # References
 [1] Vicari, M. et al. Spatial multimodal analysis of transcriptomes and metabolomes in tissues. *Nature Biotechnology* 42, 1046–1050 (2024). https://doi.org/10.1038/s41587-023-01937-y.
