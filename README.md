@@ -2,16 +2,6 @@
 
 ## 1. Environment Setup
 
-SHINE can be run within a single Python environment.
-
-### Prerequisites
-- Python **3.8**
-
-### Install environment
-
-We recommend creating a clean environment and installing dependencies from the provided `requirements.txt`.
-
-Using **conda**:
 ```bash
 conda create -n shine python=3.8 -y
 conda activate shine
