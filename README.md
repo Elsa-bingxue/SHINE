@@ -9,6 +9,8 @@ All datasets used in this study are publicly available and obtained from two pre
 + Mouse striatum (FMP-10): sma/V11L12-109/V11L12-109_B1 (https://data.mendeley.com/datasets/w7nw4km7xd/1)
 + Mouse substantia nigra (FMP-10): sma/V11T16-085/V11T16-085_B1 (https://data.mendeley.com/datasets/w7nw4km7xd/1)
 + Mouse striatum (DHB): sma/V11L12-038/V11L12-038_A1 (https://data.mendeley.com/datasets/w7nw4km7xd/1)
++ Human lung cancer: LC_091.h5ad (https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GZFCWC)
++ Human breast cancer: BC_515_Section_1.h5ad (https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GZFCWC)
 
 
 
