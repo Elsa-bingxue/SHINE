@@ -33,6 +33,7 @@ All datasets used in this study are publicly available and obtained from two pre
    This step generates the aligned inputs and graph-structured data required by SHINE.
    
 ### 3.2 Train SHINE to obtain embeddings
+
 python Training.py
 
 The learned SHINE embeddings will be saved automatically.
