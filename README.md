@@ -32,13 +32,13 @@ All datasets used in this study are publicly available and obtained from two pre
 
    This step generates the aligned inputs and graph-structured data required by SHINE.
    
-### 3.2 Train SHINE to obtain embeddings
+### 3.2  **Train SHINE to obtain embeddings**:
 
-python Training.py
+   ```bash
+   python Training.py
 
-The learned SHINE embeddings will be saved automatically.
+### 3.3  **Run downstream analysis using saved embeddings**
 
-### 3.3 Run downstream analysis using saved embeddings
  - Open the Jupyter notebook in the Saved_Embedding_Analysis/ directory.
 
  - Execute all cells sequentially to perform downstream analysis based on the saved SHINE embeddings.
