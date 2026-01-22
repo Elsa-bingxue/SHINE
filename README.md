@@ -27,7 +27,7 @@ All datasets used in this study are publicly available and obtained from two pre
 
 3. **Prepare aligned inputs and graph data**:
 
-   - Open the Jupyter notebook used for data preparation (`create_data.ipynb`).
+   - Open the Jupyter notebook used for data preparation (e.g., `create_data.ipynb`).
    - Execute all cells sequentially to perform cross-modal data registration and graph construction.
 
    This step generates the aligned inputs and graph-structured data required by SHINE.
