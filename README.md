@@ -15,7 +15,28 @@ All datasets used in this study are publicly available and obtained from two pre
 + High-quality single-cell–derived cell-type annotations for human breast cancer were obtained from [[3](https://www.nature.com/articles/s41588-021-00911-1#citeas)] and [GSE176078/GSE176078_Wu_etal_2021_BRCA_scRNASeq.tar.gz](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078#:~:text=Series%20GSE176078%20%20%2011,profiling%20by%20high%20throughput%20sequencing)
 
 ## 3. Step-by-step Running
-### 3.1 
+
+### 3.1 Data preparation and alignment
+
+1. **Download the datasets** (see Section 2) and place them into the corresponding folders under the `data/` directory.
+
+2. **Place the core scripts** in the project directory:
+   - `Training.py`
+   - `model.py`
+   - `preprocess.py`
+
+3. **Run data registration and graph construction** using the `create_data` mode:
+
+   ```bash
+   python preprocess.py --mode create_data
+   
+### 3.2 Train SHINE to obtain embeddings
+python Training.py
+
+The learned SHINE embeddings will be saved automatically.
+
+### 3.3 Run downstream analysis using saved embeddings
+Saved_Embedding_Analysis notebook
 
 
 # References
