@@ -11,7 +11,7 @@ All datasets used in this study are publicly available and obtained from two pre
 + [Fig.4] Human lung cancer: [LC_091.h5ad](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GZFCWC)
 + [Fig.5] Human breast cancer: [BC_515_Section_1.h5ad](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GZFCWC); 
 + [Fig.S6] Mouse striatum (DHB): [sma/V11L12-038/V11L12-038_A1](https://data.mendeley.com/datasets/w7nw4km7xd/1)
-+ Cell-type annotations for the three mouse datasets were obtained from the original study in [[1]](https://www.nature.com/articles/s41587-023-01937-y) and can be adopted from: https://github.com/Elsa-bingxue/SHINE/tree/main/Mouse%20striatum
++ Cell-type annotations for the three mouse datasets were obtained from the original study in [[1]](https://www.nature.com/articles/s41587-023-01937-y) and can be adopted from: Zeisel_stsc_output.csv(https://github.com/Elsa-bingxue/SHINE/tree/main/Mouse%20striatum)
 + Single-cell Annnotation data for human breast cancer [GSE176078/GSE176078_Wu_etal_2021_BRCA_scRNASeq.tar.gz](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078#:~:text=Series%20GSE176078%20%20%2011,profiling%20by%20high%20throughput%20sequencing)
 
 
