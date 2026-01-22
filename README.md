@@ -36,6 +36,7 @@ All datasets used in this study are publicly available and obtained from two pre
 
    ```bash
    python Training.py
+ ```
 
 ### 3.3  **Run downstream analysis using saved embeddings**
 
