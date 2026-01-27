@@ -5,7 +5,14 @@
 ```bash
 conda create -n shine python=3.8 -y
 conda activate shine
-pip install -r requirements.txt
+pip install shine-omics
+pip install torch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0
+pip install torch-scatter==2.0.7 -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
+pip install torch-sparse==0.6.10  -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
+pip install torch-cluster==1.5.9 -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
+pip install torch-spline-conv==1.2.1 -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
+pip install torch-geometric==1.7.1
+pip install jupyterlab notebook ipykernel ipywidgets
  ```
 
 ## 2. Datasets
