@@ -1,4 +1,4 @@
-# SHINE: Decoding metabolic–transcriptional microenvironments through higher-order spatial multi-omics integration
+# SHINE: Decoding transcriptional-metabolic microenvironments through higher-order spatial integration
 
 ## 1. Environment Setup
 
