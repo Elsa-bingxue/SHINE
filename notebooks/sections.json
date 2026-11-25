@@ -121,7 +121,16 @@
         "enrichment": {
           "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
           "sha256": "c08c1ec4e8729c954054f63de70a267fadb68856a43d8804ba8db4780e606407"
+        },
+        "display_context": {
+          "path": "outputs/notebook_display_context_20261125/A1.csv.gz",
+          "sha256": "2a74cc8a9512891e1f03f89b9e5722fe09338b00b5eeed9dbb473db0c5c8600e"
         }
+      },
+      "display": {
+        "geometry": "nearest_spot_tissue_clipped",
+        "pitch": 584.0034246474929,
+        "reference": "Figure 2a/c; nearest-spot display only"
       }
     },
     "B1": {
@@ -224,7 +233,16 @@
         "enrichment": {
           "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
           "sha256": "c08c1ec4e8729c954054f63de70a267fadb68856a43d8804ba8db4780e606407"
+        },
+        "display_context": {
+          "path": "outputs/notebook_display_context_20261125/B1.csv.gz",
+          "sha256": "c5d6508fd4b4cc845d6cf5cc70a50026ddd9d949236063437528969b79ea8c55"
         }
+      },
+      "display": {
+        "geometry": "nearest_spot_tissue_clipped",
+        "pitch": 580.0034482656116,
+        "reference": "Figure 2a/c; nearest-spot display only"
       }
     },
     "C1": {
@@ -327,7 +345,16 @@
         "enrichment": {
           "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
           "sha256": "c08c1ec4e8729c954054f63de70a267fadb68856a43d8804ba8db4780e606407"
+        },
+        "display_context": {
+          "path": "outputs/notebook_display_context_20261125/C1.csv.gz",
+          "sha256": "028a0103569d45e4383470d3f7a0c8e6d1e559498b7577ab428a2547225c2969"
         }
+      },
+      "display": {
+        "geometry": "nearest_spot_tissue_clipped",
+        "pitch": 579.0,
+        "reference": "Figure 2a/c; nearest-spot display only"
       }
     },
     "mPD3_SN": {
@@ -424,9 +451,17 @@
         "molecular_associations": {
           "path": "outputs/Figure3_PD_joint_violin_20261124/source_data/PD_joint_gene_MSI_associations.csv",
           "sha256": "10fcefbfd7909e6ba2e93298fa4c8e35a65d67c1a0f394f4d768b382c079ca07"
+        },
+        "display_context": {
+          "path": "outputs/notebook_display_context_20261125/mPD3_SN.csv.gz",
+          "sha256": "f531e4e387ee9c6632f531368b0f3610e9f7f402477f5459c2a70cc75f96cbdf"
         }
       },
-      "animal": "mPD3"
+      "animal": "mPD3",
+      "display": {
+        "geometry": "native_visium_cells",
+        "reference": "Figure 3a; unpaired tissue shown in grey"
+      }
     },
     "mPD4_SN": {
       "kind": "nigra",
@@ -522,9 +557,17 @@
         "molecular_associations": {
           "path": "outputs/Figure3_PD_joint_violin_20261124/source_data/PD_joint_gene_MSI_associations.csv",
           "sha256": "10fcefbfd7909e6ba2e93298fa4c8e35a65d67c1a0f394f4d768b382c079ca07"
+        },
+        "display_context": {
+          "path": "outputs/notebook_display_context_20261125/mPD4_SN.csv.gz",
+          "sha256": "2f1a525008c93372a03210ca2fe180ef9e3afce5d64c8f80085a1338cd682302"
         }
       },
-      "animal": "mPD4"
+      "animal": "mPD4",
+      "display": {
+        "geometry": "native_visium_cells",
+        "reference": "Figure 3a; unpaired tissue shown in grey"
+      }
     },
     "LC091": {
       "kind": "cancer",
@@ -624,7 +667,11 @@
           "sha256": "c5946395ea383964f6c4c5ae888b5c96ff4c5715a1f127d700c170dd4e857e79"
         }
       },
-      "molecular_cluster": 0
+      "molecular_cluster": 0,
+      "display": {
+        "geometry": "hexagonal_spot_footprints",
+        "reference": "Figure 4; radius = 0.56 times median nearest-neighbour pitch"
+      }
     },
     "BC_515_S1": {
       "kind": "cancer",
@@ -724,7 +771,11 @@
           "sha256": "b8afcf265014c8d81bb6be513b351e606de4c33e3f294012d449b2a19ebe195f"
         }
       },
-      "molecular_cluster": 1
+      "molecular_cluster": 1,
+      "display": {
+        "geometry": "hexagonal_spot_footprints",
+        "reference": "Figure 5; radius = 0.56 times median nearest-neighbour pitch"
+      }
     }
   }
 }

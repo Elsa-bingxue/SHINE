@@ -7,7 +7,7 @@
     "skipped": 1,
     "skip_reason": "Historical regression requires the optional frozen experiment source."
   },
-  "data_archive_files_verified": 100,
+  "data_archive_files_verified": 105,
   "notebook_saved_model_replays": [
     {
       "notebook": "01_A1_SHINE.ipynb",
@@ -80,5 +80,14 @@
       ]
     }
   ],
-  "scope": "Saved-model replay from the extracted release archive. Fresh-training reproducibility is documented separately."
+  "scope": "Saved-model replay from the extracted release archive. Fresh-training reproducibility is documented separately.",
+  "notebook_display": {
+    "geometry_matches_manuscript": true,
+    "sections": 7,
+    "labels_and_numeric_outputs_unchanged": true
+  },
+  "equation_checks": {
+    "configurations": 12,
+    "graph_attention_fusion_losses": "passed"
+  }
 }

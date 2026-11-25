@@ -1,9 +1,7 @@
 # SHINE
 
 SHINE integrates paired spatial RNA and mass spectrometry imaging (MSI) data.
-Spatial and feature graphs, attention, and multiscale hypergraph-derived
-propagation produce a shared representation for tissue partitioning and
-molecular analysis.
+It learns a shared representation for tissue partitioning and molecular analysis.
 
 [![PyPI](https://img.shields.io/pypi/v/shine-omics)](https://pypi.org/project/shine-omics/)
 
@@ -12,6 +10,8 @@ molecular analysis.
 [Figure 1 (PDF)](docs/figures/Figure1.pdf). Registration is performed upstream;
 the package accepts paired, preprocessed inputs. Loss, pre-fusion L2, and the
 within-modality spatial weight floor are configurable.
+
+Figure 2 (A1/B1/C1) uses the registered SMA data released with [NicheTrans](https://github.com/YSTLab/NicheTrans). Figure 3 uses the original SMA author pairing. Registration is completed before SHINE training.
 
 ## Install
 
@@ -60,9 +60,9 @@ within each modality; it does not set the RNA/MSI mixing ratio.
 ## Data and reproduction
 
 Original studies and download links are listed in [data/README.md](data/README.md).
-The frozen reproduction archive `SHINE_figure_data_v0.1.0.tar.gz` is prepared
-but is not yet publicly released. The seven notebooks can already be viewed
-with their saved outputs. Once the archive is available, extract it into `data/`:
+The processed data archive is not yet publicly released. Saved notebook outputs
+are available to view. To run locally, extract `SHINE_figure_data_v0.1.0.tar.gz`
+into `data/`:
 
 ```bash
 tar -xzf SHINE_figure_data_v0.1.0.tar.gz -C data
@@ -70,10 +70,8 @@ python scripts/check_figure_data.py --root data
 jupyter lab notebooks
 ```
 
-Use `SHINE_DATA_ROOT` if the extracted data are elsewhere. Input rows, feature
-order, saved weights, and labels are verified against
-[`notebooks/sections.json`](notebooks/sections.json). The default replays the
-saved model. Set `RUN_NEW_TRAINING=True` for a separate fit.
+Use `SHINE_DATA_ROOT` for another data directory. Notebooks load the saved model
+by default; set `RUN_NEW_TRAINING=True` to train a new model.
 
 ARI/NMI summaries use training seeds 0, 1, 2, 123, and 1234, averaging five
 KMeans seeds within each fit before calculating mean and sample SD. Spatial
@@ -81,9 +79,8 @@ plots use training seed 123. Regional metrics subset the whole-section labels
 without reclustering. See [reproducibility](shine-omics-pypi/docs/reproducibility.md)
 for numerical limitations, including the mPD4 retraining difference.
 
-The propagation operator is derived from hypergraph incidence. It is a fixed
-linear operator before ReLU and is equivalent to a GCN using the same operator;
-we do not claim additional nonlinear higher-order expressivity.
+[Model equations and code](docs/model.md) describe the active forward pass,
+losses and hypergraph operator.
 
 ## Source and earlier workflows
 

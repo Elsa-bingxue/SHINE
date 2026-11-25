@@ -15,21 +15,23 @@ The earlier DHB example and cell-type workflows remain in
 The earlier breast cell-type analysis used
 [GSE176078](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078).
 
+For the striatum (A1/B1/C1), the notebooks use pre-registered SMA data released with [NicheTrans](https://github.com/YSTLab/NicheTrans), rather than rerunning registration inside SHINE. Substantia nigra uses the original SMA author pairing.
+
 ## Frozen inputs for the seven notebooks
 
 `SHINE_figure_data_v0.1.0.tar.gz` is prepared and validated, but has not yet been
 released publicly. The original-study downloads above remain available.
 The archive contains the exact paired input matrices, coordinates, feature and
 spot order, seed-123 weights, embeddings from five fits, reference labels, and
-molecular tables required by the notebooks. It is a reproduction subset, not
+molecular tables and tissue display geometry required by the notebooks. It is a reproduction subset, not
 a replacement for the full original datasets. Source-study attribution and
 original data terms continue to apply.
 
 | Section | Paired spots | Pairing used in the figure |
 |---|---:|---|
-| A1 | 2,204 | Frozen NicheTrans-based paired cohort |
-| B1 | 2,455 | Frozen NicheTrans-based paired cohort |
-| C1 | 2,378 | Frozen NicheTrans-based paired cohort |
+| A1 | 2,204 | NicheTrans pre-registered SMA data; frozen common cohort |
+| B1 | 2,455 | NicheTrans pre-registered SMA data; frozen common cohort |
+| C1 | 2,378 | NicheTrans pre-registered SMA data; frozen common cohort |
 | mPD3_SN | 2,915 | Author SMA pairing |
 | mPD4_SN | 3,021 | Author SMA pairing |
 | LC091 | 2,141 | Frozen original paired matrices |

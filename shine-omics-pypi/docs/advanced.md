@@ -5,11 +5,10 @@ figure configurations; the lower-level API exposes experimental training modes.
 
 ## Fusion normalization
 
-The default is `normalize_fusion=False`. To give the RNA and attended MSI
-vectors unit L2 norm at each spot before concatenation, pass
-`normalize_fusion=True` to `shine.model.Encoder_overall`, or run
-`python -m shine.Training --normalize-fusion` with the prepared input files.
-Both configurations apply ReLU after hypergraph propagation.
+Use `SHINE(l2=True)` in the current API, or `normalize_fusion=True` in
+`RevisionSHINE`. This normalizes RNA and attended MSI vectors separately before
+concatenation. The historical `shine.model` and `shine.Training` APIs also
+accept `normalize_fusion` / `--normalize-fusion`, but use the earlier workflow.
 
 ## Optional revision training modes
 
@@ -73,7 +72,7 @@ model = RevisionSHINE(
 )
 ```
 
-The November 24 figure decision enables this only for LC091. BC_515_S1,
+The main figures use this setting only for LC091. BC_515_S1,
 mPD3, mPD4 and the striatal sections retain `spatial_floor=0.0` and their
 existing loss/L2 settings. This is an explicit dataset configuration; the API
 does not select it automatically. Five-fit testing found improved LC091 whole
