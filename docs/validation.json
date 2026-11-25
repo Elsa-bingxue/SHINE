@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-25",
+  "package_version": "0.1.0",
+  "source_matches_pypi_wheel": true,
+  "unit_tests": {
+    "passed": 23,
+    "skipped": 1,
+    "skip_reason": "Historical regression requires the optional frozen experiment source."
+  },
+  "data_archive_files_verified": 100,
+  "notebook_saved_model_replays": [
+    {
+      "notebook": "01_A1_SHINE.ipynb",
+      "spots": 2204,
+      "embedding_max_abs_error": 0.0,
+      "figure_labels_exact": true,
+      "measured_molecular_shape": [
+        2204,
+        12
+      ]
+    },
+    {
+      "notebook": "02_B1_SHINE.ipynb",
+      "spots": 2455,
+      "embedding_max_abs_error": 0.0,
+      "figure_labels_exact": true,
+      "measured_molecular_shape": [
+        2455,
+        12
+      ]
+    },
+    {
+      "notebook": "03_C1_SHINE.ipynb",
+      "spots": 2378,
+      "embedding_max_abs_error": 0.0,
+      "figure_labels_exact": true,
+      "measured_molecular_shape": [
+        2378,
+        12
+      ]
+    },
+    {
+      "notebook": "04_mPD3_SN_SHINE.ipynb",
+      "spots": 2915,
+      "embedding_max_abs_error": 0.0,
+      "figure_labels_exact": true,
+      "measured_molecular_shape": [
+        2915,
+        10
+      ]
+    },
+    {
+      "notebook": "05_mPD4_SN_SHINE.ipynb",
+      "spots": 3021,
+      "embedding_max_abs_error": 0.0,
+      "figure_labels_exact": true,
+      "measured_molecular_shape": [
+        3021,
+        10
+      ]
+    },
+    {
+      "notebook": "06_LC091_SHINE.ipynb",
+      "spots": 2141,
+      "embedding_max_abs_error": 0.0,
+      "figure_labels_exact": true,
+      "measured_molecular_shape": [
+        2141,
+        12
+      ]
+    },
+    {
+      "notebook": "07_BC_515_S1_SHINE.ipynb",
+      "spots": 3508,
+      "embedding_max_abs_error": 0.0,
+      "figure_labels_exact": true,
+      "measured_molecular_shape": [
+        3508,
+        12
+      ]
+    }
+  ],
+  "scope": "Saved-model replay from the extracted release archive. Fresh-training reproducibility is documented separately."
+}

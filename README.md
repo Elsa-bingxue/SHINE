@@ -1,66 +1,94 @@
-# SHINE: Decoding transcriptional-metabolic microenvironments through higher-order spatial integration
+# SHINE
 
-## 1. Environment Setup
+SHINE integrates paired spatial RNA and mass spectrometry imaging (MSI) data.
+Spatial and feature graphs, attention, and multiscale hypergraph-derived
+propagation produce a shared representation for tissue partitioning and
+molecular analysis.
+
+[![PyPI](https://img.shields.io/pypi/v/shine-omics)](https://pypi.org/project/shine-omics/)
+
+![SHINE workflow](docs/figures/Figure1.png)
+
+[Figure 1 (PDF)](docs/figures/Figure1.pdf). Registration is performed upstream;
+the package accepts paired, preprocessed inputs. Loss, pre-fusion L2, and the
+within-modality spatial weight floor are configurable.
+
+## Install
+
+Python 3.8–3.11:
 
 ```bash
-conda create -n shine python=3.8 -y
-conda activate shine
-pip install shine-omics
-pip install torch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0
-pip install torch-scatter==2.0.7 -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
-pip install torch-sparse==0.6.10  -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
-pip install torch-cluster==1.5.9 -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
-pip install torch-spline-conv==1.2.1 -f https://data.pyg.org/whl/torch-1.8.0+cpu.html
-pip install torch-geometric==1.7.1
-pip install jupyterlab notebook ipykernel ipywidgets
- ```
+python -m pip install "shine-omics[analysis]==0.1.0" jupyterlab
+```
 
-## 2. Datasets
-All datasets used in this study are publicly available and obtained from two previously published spatial multi-omics studies [[1]](https://www.nature.com/articles/s41587-023-01937-y) and [[2]](https://onlinelibrary.wiley.com/doi/abs/10.1002/anie.202502028). Please find and download the data from:
-+ [Fig.2] Mouse striatum (FMP-10): [sma/V11L12-109/V11L12-109_B1](https://data.mendeley.com/datasets/w7nw4km7xd/1)
-+ [Fig.3] Mouse substantia nigra (FMP-10): [sma/V11T16-085/V11T16-085_B1](https://data.mendeley.com/datasets/w7nw4km7xd/1)
-+ [Fig.4] Human lung cancer: [LC_091.h5ad](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GZFCWC)
-+ [Fig.5] Human breast cancer: [BC_515_Section_1.h5ad](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GZFCWC)
-+ [Fig.S6] Mouse striatum (DHB): [sma/V11L12-038/V11L12-038_A1](https://data.mendeley.com/datasets/w7nw4km7xd/1)
-+ Cell-type annotations for the three mouse datasets were obtained from the original study in [[1]](https://www.nature.com/articles/s41587-023-01937-y) and can be downloaded from: [Zeisel_stsc_output.csv](https://github.com/Elsa-bingxue/SHINE/tree/main/Mouse%20striatum%20(FMP-10))
-+ High-quality single-cell–derived cell-type annotations for human breast cancer were obtained from [[3](https://www.nature.com/articles/s41588-021-00911-1#citeas)] and [GSE176078/GSE176078_Wu_etal_2021_BRCA_scRNASeq.tar.gz](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE176078#:~:text=Series%20GSE176078%20%20%2011,profiling%20by%20high%20throughput%20sequencing)
+The distribution is `shine-omics`; import it as `shine`. PyTorch Geometric is
+not required by the current API. CPU is the reference backend.
 
-## 3. Step-by-step Running
+```python
+from shine import SHINE, prepare_paired
 
-### 3.1 Data preparation and alignment
+# Paired spots in the same order; RNA and MSI are already normalized/log-transformed.
+data, graphs = prepare_paired(rna, msi, xy, spot_ids=spot_ids)
+model = SHINE(loss="original", l2=False, spatial_floor=0.0)
+embedding = model.fit_transform(data, epochs=120, seed=123)
+labels = model.cluster(n_clusters=11, seed=0)
+```
 
-1. **Download the datasets** (see Section 2) and place them into the corresponding folders.
+See the [API guide](shine-omics-pypi/README.md),
+[input format](shine-omics-pypi/docs/input_format.md), and
+[synthetic example](shine-omics-pypi/examples/quickstart.py).
 
-2. **Place the core scripts** in the project directory:
-   - `Training.py`
-   - `model.py`
-   - `preprocess.py`
+## Seven section notebooks
 
-3. **Prepare aligned inputs and graph data**:
+Each notebook contains saved outputs, model replay, five-fit metrics, spatial
+maps, attention weights, and the measured molecular panels for its section.
 
-   - Open the Jupyter notebook used for data preparation (e.g., `create_data.ipynb`).
-   - Execute all cells sequentially to perform cross-modal data registration and graph construction.
+| Section | Figure | Notebook | K | Loss | L2 | Spatial floor |
+|---|---:|---|---:|---|---|---:|
+| A1 / mPD1 | 2 | [A1](notebooks/01_A1_SHINE.ipynb) | 11 | Original | On | 0 |
+| B1 / mPD3 | 2 | [B1](notebooks/02_B1_SHINE.ipynb) | 11 | Original | On | 0 |
+| C1 / mPD4 | 2 | [C1](notebooks/03_C1_SHINE.ipynb) | 11 | Original | Off | 0 |
+| mPD3 substantia nigra | 3 | [mPD3](notebooks/04_mPD3_SN_SHINE.ipynb) | 11 | Original | On | 0 |
+| mPD4 substantia nigra | 3 | [mPD4](notebooks/05_mPD4_SN_SHINE.ipynb) | 11 | Original | On | 0 |
+| LC091 lung cancer | 4 | [LC091](notebooks/06_LC091_SHINE.ipynb) | 5 | Reconstruction | Off | 0.5 |
+| BC_515_S1 breast cancer | 5 | [BC_515_S1](notebooks/07_BC_515_S1_SHINE.ipynb) | 7 | Reconstruction | Off | 0 |
 
-   This step generates the aligned inputs and graph-structured data required by SHINE.
-   
-### 3.2  **Train SHINE to obtain embeddings**:
+All use 128-dimensional embeddings, 120 epochs, hypergraph propagation, and
+final ReLU. A spatial floor of 0.5 specifies at least 50% spatial-branch weight
+within each modality; it does not set the RNA/MSI mixing ratio.
 
-   ```bash
-   python Training.py
- ```
+## Data and reproduction
 
-### 3.3  **Run downstream analysis using saved embeddings**
+Original studies and download links are listed in [data/README.md](data/README.md).
+For these notebooks, download `SHINE_figure_data_v0.1.0.tar.gz` from
+[release v0.1.0](https://github.com/Elsa-bingxue/SHINE/releases/tag/v0.1.0)
+and extract it into `data/`:
 
- - Open the Jupyter notebook of Saved_Embedding_Analysis.
+```bash
+tar -xzf SHINE_figure_data_v0.1.0.tar.gz -C data
+python scripts/check_figure_data.py --root data
+jupyter lab notebooks
+```
 
- - Execute all cells sequentially to perform downstream analysis based on the saved SHINE embeddings.
+Use `SHINE_DATA_ROOT` if the extracted data are elsewhere. Input rows, feature
+order, saved weights, and labels are verified against
+[`notebooks/sections.json`](notebooks/sections.json). The default replays the
+saved model. Set `RUN_NEW_TRAINING=True` for a separate fit.
 
-This step includes clustering, visualization, and embedding-based analyses.
+ARI/NMI summaries use training seeds 0, 1, 2, 123, and 1234, averaging five
+KMeans seeds within each fit before calculating mean and sample SD. Spatial
+plots use training seed 123. Regional metrics subset the whole-section labels
+without reclustering. See [reproducibility](shine-omics-pypi/docs/reproducibility.md)
+for numerical limitations, including the mPD4 retraining difference.
 
+The propagation operator is derived from hypergraph incidence. It is a fixed
+linear operator before ReLU and is equivalent to a GCN using the same operator;
+we do not claim additional nonlinear higher-order expressivity.
 
-# References
-[1] Vicari, M. et al. Spatial multimodal analysis of transcriptomes and metabolomes in tissues. *Nature Biotechnology* 42, 1046–1050 (2024). https://doi.org/10.1038/s41587-023-01937-y.
+## Source and earlier workflows
 
-[2] Godfrey, T. M. et al. Integrating ambient ionization mass spectrometry imaging and spatial transcriptomics on the same cancer tissues to identify rna–metabolite correlations. *Angewandte Chemie International Edition* 64, e202502028 (2025).  https://doi.org/10.1002/anie.202502028.
+- [Current package source](shine-omics-pypi), matching PyPI 0.1.0.
+- [Historical scripts and notebooks](legacy/README.md), retained for earlier results.
+- [Issues](https://github.com/Elsa-bingxue/SHINE/issues).
 
-[3] Wu, S. Z. et al. A single-cell and spatially resolved atlas of human breast cancers. *Nature Genetics* 53, 1334–1347 (2021). https://doi.org/10.1038/s41588-021-00911-1
+To install the source checkout: `python -m pip install -e './shine-omics-pypi[analysis]'`.

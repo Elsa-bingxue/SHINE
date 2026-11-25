@@ -1,0 +1,198 @@
+{
+  "version": "2026-11-24",
+  "scope": "Explicit optional model parameters; caller supplies matched inputs, current frozen graphs and original cohort. No automatic tissue selection.",
+  "default_spatial_floor": 0.0,
+  "spatial_floor_range": [
+    0.0,
+    1.0
+  ],
+  "spatial_floor_applies_to": "Within RNA and within MSI separately, in both training and inference",
+  "user_decision": "Adopt spatial_floor=0.5 and K=5 for LC091 only. Keep the current breast, nigra and striatal settings.",
+  "epochs": 120,
+  "training_seeds": [
+    0,
+    1,
+    2,
+    123,
+    1234
+  ],
+  "spatial_training_seed": 123,
+  "final_relu": true,
+  "cases": {
+    "A1": {
+      "figure": 2,
+      "clustering_K": 11,
+      "model_kwargs": {
+        "training_mode": "original",
+        "normalize_fusion": true,
+        "spatial_floor": 0.0,
+        "attention_backend": "dense",
+        "evaluate_zero_alignment": false
+      },
+      "graph_options": {
+        "spatial_k": 6,
+        "feature_k": 20,
+        "hyperedge_sizes": [
+          5,
+          20
+        ],
+        "pca_components": 30,
+        "pca_seed": 0,
+        "sparse_propagation": false,
+        "allow_constant_feature_rows": true
+      },
+      "display_clustering_seed": 0
+    },
+    "B1": {
+      "figure": 2,
+      "clustering_K": 11,
+      "model_kwargs": {
+        "training_mode": "original",
+        "normalize_fusion": true,
+        "spatial_floor": 0.0,
+        "attention_backend": "dense",
+        "evaluate_zero_alignment": false
+      },
+      "graph_options": {
+        "spatial_k": 6,
+        "feature_k": 20,
+        "hyperedge_sizes": [
+          5,
+          20
+        ],
+        "pca_components": 30,
+        "pca_seed": 0,
+        "sparse_propagation": false,
+        "allow_constant_feature_rows": true
+      },
+      "display_clustering_seed": 0
+    },
+    "C1": {
+      "figure": 2,
+      "clustering_K": 11,
+      "model_kwargs": {
+        "training_mode": "original",
+        "normalize_fusion": false,
+        "spatial_floor": 0.0,
+        "attention_backend": "dense",
+        "evaluate_zero_alignment": false
+      },
+      "graph_options": {
+        "spatial_k": 6,
+        "feature_k": 20,
+        "hyperedge_sizes": [
+          5,
+          20
+        ],
+        "pca_components": 30,
+        "pca_seed": 0,
+        "sparse_propagation": false,
+        "allow_constant_feature_rows": true
+      },
+      "display_clustering_seed": 0
+    },
+    "mPD3_SN": {
+      "figure": 3,
+      "clustering_K": 11,
+      "model_kwargs": {
+        "training_mode": "original",
+        "normalize_fusion": true,
+        "spatial_floor": 0.0,
+        "attention_backend": "sparse",
+        "evaluate_zero_alignment": false
+      },
+      "graph_options": {
+        "spatial_k": 6,
+        "feature_k": 20,
+        "hyperedge_sizes": [
+          5,
+          20
+        ],
+        "pca_components": 30,
+        "pca_seed": 0,
+        "sparse_propagation": false,
+        "allow_constant_feature_rows": true
+      },
+      "display_clustering_seed": 123
+    },
+    "mPD4_SN": {
+      "figure": 3,
+      "clustering_K": 11,
+      "model_kwargs": {
+        "training_mode": "original",
+        "normalize_fusion": true,
+        "spatial_floor": 0.0,
+        "attention_backend": "sparse",
+        "evaluate_zero_alignment": false
+      },
+      "graph_options": {
+        "spatial_k": 6,
+        "feature_k": 20,
+        "hyperedge_sizes": [
+          5,
+          20
+        ],
+        "pca_components": 30,
+        "pca_seed": 0,
+        "sparse_propagation": false,
+        "allow_constant_feature_rows": true
+      },
+      "display_clustering_seed": 123
+    },
+    "LC091": {
+      "figure": 4,
+      "clustering_K": 5,
+      "model_kwargs": {
+        "training_mode": "reconstruction_only",
+        "normalize_fusion": false,
+        "spatial_floor": 0.5,
+        "attention_backend": "grouped",
+        "evaluate_zero_alignment": true
+      },
+      "graph_options": {
+        "spatial_k": 6,
+        "feature_k": 20,
+        "hyperedge_sizes": [
+          5,
+          20
+        ],
+        "pca_components": 30,
+        "pca_seed": 0,
+        "sparse_propagation": true,
+        "allow_constant_feature_rows": true
+      },
+      "display_clustering_seed": 0
+    },
+    "BC_515_S1": {
+      "figure": 5,
+      "clustering_K": 7,
+      "model_kwargs": {
+        "training_mode": "reconstruction_only",
+        "normalize_fusion": false,
+        "spatial_floor": 0.0,
+        "attention_backend": "dense",
+        "evaluate_zero_alignment": false
+      },
+      "graph_options": {
+        "spatial_k": 6,
+        "feature_k": 20,
+        "hyperedge_sizes": [
+          5,
+          20
+        ],
+        "pca_components": 30,
+        "pca_seed": 0,
+        "sparse_propagation": false,
+        "allow_constant_feature_rows": true
+      },
+      "display_clustering_seed": 0
+    }
+  },
+  "settings_sources": {
+    "Figure2": "outputs/SHINE_Fig2_fusion_L2_20261115/source_data/Figure2_parameter_table.csv",
+    "Figure3": "outputs/Figure3_PD_joint_violin_20261124/figure_parameters.json",
+    "Figure4": "outputs/SHINE_Fig4_spatial_floor50_K5_20261124/figure_config.json",
+    "Figure5": "outputs/SHINE_Fig4_Fig5_tumor_clusters_20261119/figure_config.json"
+  },
+  "result_provenance": "Frozen section notebooks bind inputs, graphs, saved models and five-fit results to source hashes. Numerical compatibility settings reproduce the historical forward and optimizer paths; do not vary them as biological hyperparameters."
+}

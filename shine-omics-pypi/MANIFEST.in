@@ -1,0 +1,9 @@
+include README.md
+include CHANGELOG.md
+include configs/revision_figures.json
+recursive-include docs *.md
+recursive-include docs *.txt
+recursive-include examples *.py
+recursive-include tests *.py
+prune shine_src
+prune build
