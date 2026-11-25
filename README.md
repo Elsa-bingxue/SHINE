@@ -60,9 +60,9 @@ within each modality; it does not set the RNA/MSI mixing ratio.
 ## Data and reproduction
 
 Original studies and download links are listed in [data/README.md](data/README.md).
-For these notebooks, download `SHINE_figure_data_v0.1.0.tar.gz` from
-[release v0.1.0](https://github.com/Elsa-bingxue/SHINE/releases/tag/v0.1.0)
-and extract it into `data/`:
+The frozen reproduction archive `SHINE_figure_data_v0.1.0.tar.gz` is prepared
+but is not yet publicly released. The seven notebooks can already be viewed
+with their saved outputs. Once the archive is available, extract it into `data/`:
 
 ```bash
 tar -xzf SHINE_figure_data_v0.1.0.tar.gz -C data

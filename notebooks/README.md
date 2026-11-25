@@ -19,8 +19,8 @@ One executed notebook per section. Default mode replays the saved figure model;
 python -m pip install "shine-omics[analysis]==0.1.0" jupyterlab
 ```
 
-Download the [figure-data archive](https://github.com/Elsa-bingxue/SHINE/releases/tag/v0.1.0)
-and extract it into the repository’s `data/` directory. Alternatively, set
+The figure-data archive is awaiting public release. Once it is available,
+extract it into the repository’s `data/` directory. Alternatively, set
 `SHINE_DATA_ROOT` to its extraction directory. See [data requirements](../data/README.md).
 The manifest verifies inputs, checkpoints and labels by SHA-256. These files
 are separate from the Python package.

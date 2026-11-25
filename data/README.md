@@ -17,8 +17,8 @@ The earlier breast cell-type analysis used
 
 ## Frozen inputs for the seven notebooks
 
-Download `SHINE_figure_data_v0.1.0.tar.gz` from
-[release v0.1.0](https://github.com/Elsa-bingxue/SHINE/releases/tag/v0.1.0).
+`SHINE_figure_data_v0.1.0.tar.gz` is prepared and validated, but has not yet been
+released publicly. The original-study downloads above remain available.
 The archive contains the exact paired input matrices, coordinates, feature and
 spot order, seed-123 weights, embeddings from five fits, reference labels, and
 molecular tables required by the notebooks. It is a reproduction subset, not
