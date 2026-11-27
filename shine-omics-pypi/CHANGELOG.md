@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 — 2026-11-27
+
+- Separate cross-modal `local_k` from the spatial encoder graph and add an optional all-spot mask.
+- Retain backward-compatible graph construction when the new parameters are omitted.
+- Record the grouped-feature/dense-cross execution used in the matched mask experiment.
+- Add four-neighbor striatal presets; retain six neighbors in the other sections.
+
+
 ## 0.1.0 — 2026-11-24
 
 - Add the `SHINE` estimator: fit, transform, cluster, save and load.

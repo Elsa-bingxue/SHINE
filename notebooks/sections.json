@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "date": "2026-11-24",
+  "date": "2026-11-27",
   "epochs": 120,
   "training_seeds": [
     0,
@@ -19,7 +19,7 @@
   "spatial_training_seed": 123,
   "lr": 0.0001,
   "weight_decay": 0.001,
-  "scope": "SHINE only; current figure parameters and frozen paired cohorts; no label-based re-selection",
+  "scope": "SHINE figure configurations; four-neighbor cross-modal support in striatum, six in other sections; selected after exploratory sensitivity analysis.",
   "cases": {
     "A1": {
       "kind": "striatum",
@@ -32,7 +32,7 @@
         "l2": true,
         "spatial_floor": 0.0,
         "latent_dim": 128,
-        "attention_backend": "dense",
+        "attention_backend": "grouped_feature",
         "evaluate_zero_alignment": false
       },
       "graph_options": {
@@ -45,10 +45,12 @@
         "pca_components": 30,
         "pca_seed": 0,
         "sparse_propagation": false,
-        "allow_constant_feature_rows": true
+        "allow_constant_feature_rows": true,
+        "local_mask": true,
+        "local_k": 4
       },
       "preprocessing": "Frozen NicheTrans paired cohort. RNA: all-gene total 10000/log1p, frozen paper B1 2000 genes. MSI: TIC 10000/log1p, frozen paired assignment. Do not normalize inputs.npz again.",
-      "label_column": "SHINE_local6_K11",
+      "label_column": "SHINE_local4_K11",
       "display_genes": [
         "Penk",
         "Pcp4",
@@ -79,48 +81,48 @@
           "sha256": "b49c3f5076f519a571164d204c78f4c3b524d1bb0370f70c8ab61acf2230150a"
         },
         "display_labels": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/source_data/Figure2c_A1_seed123.csv",
-          "sha256": "bb94aa6e8b23aea11b02cee71c522ed1d465655b316e53d881287cb2a79bab59"
+          "path": "outputs/SHINE_Fig2_local4_20261127/source_data/Figure2c_A1_seed123.csv",
+          "sha256": "e5aaa9390d6c4e65fb9b3ba4352dcbca0a7b5b8d95aec1edd8fb7cc74ce50cb8"
         },
         "figure": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Figure2.pdf",
-          "sha256": "ce760df8716b0c79b12ffa4a535d71c94266290a71beb5d402327b348d7f4374"
+          "path": "outputs/SHINE_Fig2_local4_20261127/CaseStudy/Figure2.pdf",
+          "sha256": "75b8de6b351f54ca90df31822def336ca843e2ec2569a37093b3a6c61ccf29a1"
         },
         "embedding_0": {
-          "path": "revision_experiments/figure2_common_l2_20261116/A1/models/fusion_l2/confirm_seed0/embedding.npy",
-          "sha256": "8e613db9bf6cb69a65a049c9fead7e9764f81dc42830bd6ce719c0dbcf4ef050"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/A1/seed0/embedding.npy",
+          "sha256": "e0d00af3830b3c583f33663b2b19a0c1ed0be7cb00d80ac46d3b668828c6e498"
         },
         "embedding_1": {
-          "path": "revision_experiments/figure2_common_l2_20261116/A1/models/fusion_l2/confirm_seed1/embedding.npy",
-          "sha256": "1d6ef17d1a41c2abc01da124650fecfe677a0ff44dce1d6a1b0aee05ebbacf8d"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/A1/seed1/embedding.npy",
+          "sha256": "6ae0e977d9c9013c73f421bea3954407059befd691ea26f35f349c9e361d9dda"
         },
         "embedding_2": {
-          "path": "revision_experiments/figure2_common_l2_20261116/A1/models/fusion_l2/confirm_seed2/embedding.npy",
-          "sha256": "06be221d07a04dd35d3db316a061e9fa570ed757d1a75f124f109f0821bbf84a"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/A1/seed2/embedding.npy",
+          "sha256": "d4c55df612d7a9444fb5fa17ebd2fb082c2abd14e8ac9e0470273c7a004a536b"
         },
         "embedding_123": {
-          "path": "revision_experiments/figure2_common_l2_20261116/A1/models/fusion_l2/confirm_seed123/embedding.npy",
-          "sha256": "702841eb523d17bc50d9451c0e8d3f23bcfa2c4b5860868f6bae3f2d629048d2"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/A1/seed123/embedding.npy",
+          "sha256": "cc57b2e523042b574abdbaa0bf24b02125c3f7e4cbf7249e2ebd86622c7a1bc3"
         },
         "checkpoint_123": {
-          "path": "revision_experiments/figure2_common_l2_20261116/A1/models/fusion_l2/confirm_seed123/model_state.pt",
-          "sha256": "3b6eaca9d12e699c483b3805312b7bb9bc9c3d5dde5ad328c95d386f91630929"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/A1/seed123/model_state.pt.gz",
+          "sha256": "9b587f84ac890db2f6cd23e2d7ee0362152ca83f74a5e2af8dfff5071231282c"
         },
         "embedding_1234": {
-          "path": "revision_experiments/figure2_common_l2_20261116/A1/models/fusion_l2/confirm_seed1234/embedding.npy",
-          "sha256": "5958af07141ccbf9f19ada21b6ca16c46b623e54685de51e9b0c494624b334ea"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/A1/seed1234/embedding.npy",
+          "sha256": "8b91602bac93940f58c4e964983c1cd239b7cacc784838936cf214fad03d76da"
         },
         "raw_rna": {
           "path": "MSI&ST/SMA_code/sma-main/data/sma/V11L12-109/V11L12-109_A1/output_data/V11L12-109_A1_RNA/outs/raw_feature_bc_matrix.h5",
           "sha256": "1f08d8f8eb69d94cde6ac930e8da5edfff92c93e5ffc2f2115726d2082366b24"
         },
         "molecular_selection": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/CP_cluster_pathways/section_cluster_molecule_levels.csv",
-          "sha256": "9ea45fba3a48f46295acd1f0f43b68d8dfdd05542391f81aecec4340d9094826"
+          "path": "outputs/SHINE_Fig2_local4_20261127/CP_cluster_pathways/section_cluster_molecule_levels.csv",
+          "sha256": "f1b763c9c37458c788585012f3d3b46d6b851835c057f79c29fadc3638b2e86a"
         },
         "enrichment": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
-          "sha256": "c08c1ec4e8729c954054f63de70a267fadb68856a43d8804ba8db4780e606407"
+          "path": "outputs/SHINE_Fig2_local4_20261127/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
+          "sha256": "9445fe7b43ffaf5221c633547bb1ae0adec766e3e9d9f2c0ab18d257fbfcba04"
         },
         "display_context": {
           "path": "outputs/notebook_display_context_20261125/A1.csv.gz",
@@ -144,7 +146,7 @@
         "l2": true,
         "spatial_floor": 0.0,
         "latent_dim": 128,
-        "attention_backend": "dense",
+        "attention_backend": "grouped_feature",
         "evaluate_zero_alignment": false
       },
       "graph_options": {
@@ -157,10 +159,12 @@
         "pca_components": 30,
         "pca_seed": 0,
         "sparse_propagation": false,
-        "allow_constant_feature_rows": true
+        "allow_constant_feature_rows": true,
+        "local_mask": true,
+        "local_k": 4
       },
       "preprocessing": "Frozen NicheTrans paired cohort. RNA: all-gene total 10000/log1p, frozen paper B1 2000 genes. MSI: TIC 10000/log1p, frozen paired assignment. Do not normalize inputs.npz again.",
-      "label_column": "SHINE_local6_K11",
+      "label_column": "SHINE_local4_K11",
       "display_genes": [
         "Penk",
         "Pcp4",
@@ -191,48 +195,48 @@
           "sha256": "b49c3f5076f519a571164d204c78f4c3b524d1bb0370f70c8ab61acf2230150a"
         },
         "display_labels": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/source_data/Figure2c_B1_seed123.csv",
-          "sha256": "d6fac2ca1540d20a3b284db71a63e9f48440b6b54e5a03bc52512a43b832d2d3"
+          "path": "outputs/SHINE_Fig2_local4_20261127/source_data/Figure2c_B1_seed123.csv",
+          "sha256": "ec4d70647054c1b26f8e47c0e78b78bd2dc2f713c0be8ced60e4837ab15551d3"
         },
         "figure": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Figure2.pdf",
-          "sha256": "ce760df8716b0c79b12ffa4a535d71c94266290a71beb5d402327b348d7f4374"
+          "path": "outputs/SHINE_Fig2_local4_20261127/CaseStudy/Figure2.pdf",
+          "sha256": "75b8de6b351f54ca90df31822def336ca843e2ec2569a37093b3a6c61ccf29a1"
         },
         "embedding_0": {
-          "path": "revision_experiments/figure2_common_l2_20261116/B1/models/fusion_l2/confirm_seed0/embedding.npy",
-          "sha256": "daad0c7fb5353eb2ee1600a9039d12134be065d854f04907565a14470f1b8b2b"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/B1/seed0/embedding.npy",
+          "sha256": "794e9d9649a9a2f3d0ab67f7797be4551156ea97b002d9d39a752b1b40711b52"
         },
         "embedding_1": {
-          "path": "revision_experiments/figure2_common_l2_20261116/B1/models/fusion_l2/confirm_seed1/embedding.npy",
-          "sha256": "9e1c0c4f15be131dafad67146c7bc6a643fc204aa37e7e26fdad194a3a372207"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/B1/seed1/embedding.npy",
+          "sha256": "1fbd49edacfcb63d8fb6146bff4549e97ace49ac3f4375553a928c3ffe665693"
         },
         "embedding_2": {
-          "path": "revision_experiments/figure2_common_l2_20261116/B1/models/fusion_l2/confirm_seed2/embedding.npy",
-          "sha256": "4b97a29b4ce028c540745f07fd52d671a8b73384feb0140abfdf231ce4225f91"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/B1/seed2/embedding.npy",
+          "sha256": "5e1d224fe49c46897286a951d6cfae252717673e3693d430b054c2ba28d1e79f"
         },
         "embedding_123": {
-          "path": "revision_experiments/figure2_common_l2_20261116/B1/models/fusion_l2/confirm_seed123/embedding.npy",
-          "sha256": "4a99f47997187ae8e3853108d2e003734385d75c2174dd57f76f089977bc56c7"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/B1/seed123/embedding.npy",
+          "sha256": "49c9c2e32618b2c737cd4cb3e43147805ac3c8680f996f268482f8868a919785"
         },
         "checkpoint_123": {
-          "path": "revision_experiments/figure2_common_l2_20261116/B1/models/fusion_l2/confirm_seed123/model_state.pt",
-          "sha256": "f05758fe8cec1aeafac56adb4b72ac4c9bef23943f6e4e7a56b52ea5bafcc1c5"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/B1/seed123/model_state.pt.gz",
+          "sha256": "8d2beeb4fdd8bed1a4d01934ed89301f06bad7c48db0ae5f0064d67c609a303d"
         },
         "embedding_1234": {
-          "path": "revision_experiments/figure2_common_l2_20261116/B1/models/fusion_l2/confirm_seed1234/embedding.npy",
-          "sha256": "e68da125b9247c876591f3be5b38c35ab567b1d3bf7e915e6a0986c921ac8a87"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/B1/seed1234/embedding.npy",
+          "sha256": "9b9bd80ea568f29ec4fa08d5a28b05342509ca4aad360d581dc3d4ef5798bbfe"
         },
         "raw_rna": {
           "path": "MSI&ST/SMA_code/sma-main/data/sma/V11L12-109/V11L12-109_B1/output_data/V11L12-109_B1_RNA/outs/raw_feature_bc_matrix.h5",
           "sha256": "546507f416c49fbfe811cfb499d4741208c765ff0734c4200784433ad53cbb50"
         },
         "molecular_selection": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/CP_cluster_pathways/section_cluster_molecule_levels.csv",
-          "sha256": "9ea45fba3a48f46295acd1f0f43b68d8dfdd05542391f81aecec4340d9094826"
+          "path": "outputs/SHINE_Fig2_local4_20261127/CP_cluster_pathways/section_cluster_molecule_levels.csv",
+          "sha256": "f1b763c9c37458c788585012f3d3b46d6b851835c057f79c29fadc3638b2e86a"
         },
         "enrichment": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
-          "sha256": "c08c1ec4e8729c954054f63de70a267fadb68856a43d8804ba8db4780e606407"
+          "path": "outputs/SHINE_Fig2_local4_20261127/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
+          "sha256": "9445fe7b43ffaf5221c633547bb1ae0adec766e3e9d9f2c0ab18d257fbfcba04"
         },
         "display_context": {
           "path": "outputs/notebook_display_context_20261125/B1.csv.gz",
@@ -256,7 +260,7 @@
         "l2": false,
         "spatial_floor": 0.0,
         "latent_dim": 128,
-        "attention_backend": "dense",
+        "attention_backend": "grouped_feature",
         "evaluate_zero_alignment": false
       },
       "graph_options": {
@@ -269,10 +273,12 @@
         "pca_components": 30,
         "pca_seed": 0,
         "sparse_propagation": false,
-        "allow_constant_feature_rows": true
+        "allow_constant_feature_rows": true,
+        "local_mask": true,
+        "local_k": 4
       },
       "preprocessing": "Frozen NicheTrans paired cohort. RNA: all-gene total 10000/log1p, frozen paper B1 2000 genes. MSI: TIC 10000/log1p, frozen paired assignment. Do not normalize inputs.npz again.",
-      "label_column": "SHINE_local6_K11",
+      "label_column": "SHINE_local4_K11",
       "display_genes": [
         "Penk",
         "Pcp4",
@@ -303,48 +309,48 @@
           "sha256": "b49c3f5076f519a571164d204c78f4c3b524d1bb0370f70c8ab61acf2230150a"
         },
         "display_labels": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/source_data/Figure2c_C1_seed123.csv",
-          "sha256": "40013e98981bab74369aabfd1ca6a60d886830db6b3d5af592d579b3c6ec8394"
+          "path": "outputs/SHINE_Fig2_local4_20261127/source_data/Figure2c_C1_seed123.csv",
+          "sha256": "7cbf08a5b4d750b57a7c1f3e55bdbd61c074a99326e52ef685182cdb5895a213"
         },
         "figure": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Figure2.pdf",
-          "sha256": "ce760df8716b0c79b12ffa4a535d71c94266290a71beb5d402327b348d7f4374"
+          "path": "outputs/SHINE_Fig2_local4_20261127/CaseStudy/Figure2.pdf",
+          "sha256": "75b8de6b351f54ca90df31822def336ca843e2ec2569a37093b3a6c61ccf29a1"
         },
         "embedding_0": {
-          "path": "revision_experiments/independent5_NicheTrans_20261112/C1/models/multiscale_local/confirm_seed0/embedding.npy",
-          "sha256": "598bc01a04fb30b6640b8f67c0c2a31781c5f549c3a53a0dc5caa5d54d48205c"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/C1/seed0/embedding.npy",
+          "sha256": "e40cbc486a09718f697ea8d39c4def51d4903ae4e03e0bc75f1bab990ee00a5d"
         },
         "embedding_1": {
-          "path": "revision_experiments/independent5_NicheTrans_20261112/C1/models/multiscale_local/confirm_seed1/embedding.npy",
-          "sha256": "fc462433f1aa3b3d056cdf1cd9303c505bdcc34b2aeba8e53072eecbfb3b40bd"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/C1/seed1/embedding.npy",
+          "sha256": "25abc6494520eb42051c761a9b71b15558e03230cd5f6111ddc60607c6a32ffe"
         },
         "embedding_2": {
-          "path": "revision_experiments/independent5_NicheTrans_20261112/C1/models/multiscale_local/confirm_seed2/embedding.npy",
-          "sha256": "d3abd8033f5d8759b0bbb047ddf2e2dcb168bfc87cce25de14dd4d7d7a002e96"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/C1/seed2/embedding.npy",
+          "sha256": "d08a8dcb01b13bc796a6f45005d2c5875b03c86e93311a8c52f64c576bab0649"
         },
         "embedding_123": {
-          "path": "revision_experiments/independent5_NicheTrans_20261112/C1/models/multiscale_local/confirm_seed123/embedding.npy",
-          "sha256": "62f294944ce1e0db902339f03f3a8650f3fab9021465c62610b729663a8b5b11"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/C1/seed123/embedding.npy",
+          "sha256": "6779c8e536fe86cd7d261d47231cea32059c2564d757a19a7cbab2baf9fd16be"
         },
         "checkpoint_123": {
-          "path": "revision_experiments/independent5_NicheTrans_20261112/C1/models/multiscale_local/confirm_seed123/model_state.pt",
-          "sha256": "319486db819ea7811a30eea49b682f623e437a9cd42f7963b768d25d7a81504d"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/C1/seed123/model_state.pt.gz",
+          "sha256": "4b8880372e19bb133db146a7289e25fa6cbbe74b79ffe3bab4bfa3b7b4c19365"
         },
         "embedding_1234": {
-          "path": "revision_experiments/independent5_NicheTrans_20261112/C1/models/multiscale_local/confirm_seed1234/embedding.npy",
-          "sha256": "e0725c71d7d127b2035a2e32f410c8036d254aa664000fad449db9c1d0e604a9"
+          "path": "outputs/SHINE_Fig2_local4_20261127/local4_runs/C1/seed1234/embedding.npy",
+          "sha256": "03f73a34e0e6a07d0137f7638b2b50913e8c00ce98aa174c89586af447f498ff"
         },
         "raw_rna": {
           "path": "MSI&ST/SMA_code/sma-main/data/sma/V11L12-109/V11L12-109_C1/output_data/V11L12-109_C1_RNA/outs/raw_feature_bc_matrix.h5",
           "sha256": "4beea31d0cbf9267259f6e6113457787d917dafdbfffae80a0e63d1965082e18"
         },
         "molecular_selection": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/CP_cluster_pathways/section_cluster_molecule_levels.csv",
-          "sha256": "9ea45fba3a48f46295acd1f0f43b68d8dfdd05542391f81aecec4340d9094826"
+          "path": "outputs/SHINE_Fig2_local4_20261127/CP_cluster_pathways/section_cluster_molecule_levels.csv",
+          "sha256": "f1b763c9c37458c788585012f3d3b46d6b851835c057f79c29fadc3638b2e86a"
         },
         "enrichment": {
-          "path": "outputs/SHINE_Fig2_fusion_L2_20261115/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
-          "sha256": "c08c1ec4e8729c954054f63de70a267fadb68856a43d8804ba8db4780e606407"
+          "path": "outputs/SHINE_Fig2_local4_20261127/Metascape_primary_optional_L2_20261123/Figure2h_per_cluster.csv",
+          "sha256": "9445fe7b43ffaf5221c633547bb1ae0adec766e3e9d9f2c0ab18d257fbfcba04"
         },
         "display_context": {
           "path": "outputs/notebook_display_context_20261125/C1.csv.gz",
@@ -381,7 +387,9 @@
         "pca_components": 30,
         "pca_seed": 0,
         "sparse_propagation": false,
-        "allow_constant_feature_rows": true
+        "allow_constant_feature_rows": true,
+        "local_mask": true,
+        "local_k": 6
       },
       "preprocessing": "Frozen author SMA matched cohort. RNA and MSI total/TIC 10000/log1p; frozen 2000 RNA features. Do not refit registration, expand the cohort, or renormalize inputs.npz.",
       "label_column": "SHINE",
@@ -487,7 +495,9 @@
         "pca_components": 30,
         "pca_seed": 0,
         "sparse_propagation": false,
-        "allow_constant_feature_rows": true
+        "allow_constant_feature_rows": true,
+        "local_mask": true,
+        "local_k": 6
       },
       "preprocessing": "Frozen author SMA matched cohort. RNA and MSI total/TIC 10000/log1p; frozen 2000 RNA features. Do not refit registration, expand the cohort, or renormalize inputs.npz.",
       "label_column": "SHINE",
@@ -593,7 +603,9 @@
         "pca_components": 30,
         "pca_seed": 0,
         "sparse_propagation": true,
-        "allow_constant_feature_rows": true
+        "allow_constant_feature_rows": true,
+        "local_mask": true,
+        "local_k": 6
       },
       "preprocessing": "Frozen original notebook paired matrices; RNA QC and HVG selection, RNA/MSI total/TIC 10000/log1p were done upstream. No repeat normalization. Features and barcodes are hash-verified.",
       "label_column": "SHINE__whole",
@@ -697,7 +709,9 @@
         "pca_components": 30,
         "pca_seed": 0,
         "sparse_propagation": false,
-        "allow_constant_feature_rows": true
+        "allow_constant_feature_rows": true,
+        "local_mask": true,
+        "local_k": 6
       },
       "preprocessing": "Frozen original notebook paired matrices; RNA QC and HVG selection, RNA/MSI total/TIC 10000/log1p were done upstream. No repeat normalization. Features and barcodes are hash-verified.",
       "label_column": "SHINE__whole",

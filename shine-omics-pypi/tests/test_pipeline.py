@@ -42,9 +42,31 @@ class PipelineTest(unittest.TestCase):
                  feature_k=4, hyperedge_sizes=(3, 5), pca_components=4)
         self.assertEqual(self.data.fingerprint(), rebuilt.fingerprint())
 
+    def test_mask_choice_does_not_change_graphs(self):
+        common = dict(spatial_k=3, feature_k=4, hyperedge_sizes=(3, 5), pca_components=4)
+        graphs = []
+        for opts, count in [({'local_k': 2}, 3), ({'local_k': 0}, 1),
+                            ({'local_mask': False}, len(self.xy))]:
+            _, graph = prepare_paired(self.rna, self.msi, self.xy, **common, **opts)
+            np.testing.assert_array_equal(graph['causal_mask'].sum(1), np.repeat(count, len(self.xy)))
+            np.testing.assert_array_equal(graph['causal_mask'].diag(), np.ones(len(self.xy)))
+            for name in ('spatial_graph', 'feature_graph_rna', 'feature_graph_msi', 'propagation'):
+                torch.testing.assert_close(graph[name].to_dense(), self.graph[name].to_dense(), rtol=0, atol=0)
+            graphs.append(graph)
+        # Independent coordinates make the nearest neighbor relation unambiguous.
+        distance = np.linalg.norm(self.xy[:, None] - self.xy[None, :], axis=-1)
+        expected = np.zeros_like(distance)
+        expected[np.arange(len(self.xy))[:, None], np.argsort(distance, axis=1)[:, :3]] = 1
+        np.testing.assert_array_equal(graphs[0]['causal_mask'], expected)
+        self.assertIsNone(graphs[-1]['audit']['local_k'])
+        for invalid in ({'local_k': -1}, {'local_k': 1.5}, {'local_k': True},
+                        {'local_mask': False, 'local_k': 4}, {'local_k': len(self.xy)}):
+            with self.assertRaises(ValueError):
+                prepare_paired(self.rna, self.msi, self.xy, **common, **invalid)
+
     def test_attention_backends_forward_and_gradient_agree(self):
         outputs, gradients = [], []
-        for backend in ['dense', 'sparse', 'grouped']:
+        for backend in ['dense', 'sparse', 'grouped', 'grouped_feature']:
             torch.manual_seed(11)
             model = RevisionSHINE(8, 9, latent=8, attention_backend=backend,
                                    normalize_fusion=True, spatial_floor=.5)
@@ -54,7 +76,7 @@ class PipelineTest(unittest.TestCase):
             total.backward()
             outputs.append(out['combined'].detach().numpy())
             gradients.append(model.hypergraph_fusion.weight.grad.numpy())
-        for i in [1, 2]:
+        for i in [1, 2, 3]:
             np.testing.assert_allclose(outputs[0], outputs[i], atol=2e-6, rtol=2e-5)
             np.testing.assert_allclose(gradients[0], gradients[i], atol=2e-6, rtol=2e-5)
 

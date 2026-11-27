@@ -13,11 +13,17 @@ One executed notebook per section. Default mode replays the saved figure model;
 | [06_LC091_SHINE.ipynb](06_LC091_SHINE.ipynb) | 4 | 5 | Reconstruction | Off | 0.5 |
 | [07_BC_515_S1_SHINE.ipynb](07_BC_515_S1_SHINE.ipynb) | 5 | 7 | Reconstruction | Off | 0 |
 
+Cross-modal support is self + 4 in A1/B1/C1 and self + 6 elsewhere.
+The spatial graph is kNN6 in every section.
+
 ## Setup
 
 ```bash
-python -m pip install "shine-omics[analysis]==0.1.0" jupyterlab
+python -m pip install "shine-omics[analysis]==0.1.1" jupyterlab
 ```
+
+Version 0.1.1 includes the independent local-mask option. Copy the supplied
+`Updated_Figure_Data` overlay into the existing data root for A1/B1/C1.
 
 The figure-data archive is awaiting public release. Once it is available,
 extract it into the repository’s `data/` directory. Alternatively, set

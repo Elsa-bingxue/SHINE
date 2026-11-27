@@ -98,7 +98,7 @@ class RevisionSHINE(Encoder_overall):
                  correspondence_weight=None, infonce_weight=None,
                  spatial_floor=0.0, attention_backend='sparse',
                  evaluate_zero_alignment=False):
-        if attention_backend not in ('sparse', 'dense', 'grouped'):
+        if attention_backend not in ('sparse', 'dense', 'grouped', 'grouped_feature'):
             raise ValueError('Unknown attention execution backend.')
         if type(evaluate_zero_alignment) is not bool:
             raise TypeError('evaluate_zero_alignment must be bool.')
@@ -160,9 +160,9 @@ class RevisionSHINE(Encoder_overall):
             for layer in (self.feature_encoder1, self.feature_encoder2):
                 layer.forward = types.MethodType(_feature_attention, layer)
             self.causal_attention.forward = types.MethodType(_cross_attention, self.causal_attention)
-        elif attention_backend == 'grouped':
+        elif attention_backend in ('grouped', 'grouped_feature'):
             from .attention_backends import install_grouped
-            install_grouped(self)
+            install_grouped(self, cross=attention_backend == 'grouped')
 
     def get_config(self):
         return dict(schema_version=4, rna_dim=self.rna_dim, msi_dim=self.msi_dim,

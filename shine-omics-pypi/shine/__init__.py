@@ -1,6 +1,6 @@
 """SHINE spatial multi-omics integration."""
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __all__ = ['SHINE', 'prepare', 'PreparedData', 'RevisionSHINE',
            'normalize_counts', 'build_graphs', 'prepare_paired']
 

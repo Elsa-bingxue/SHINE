@@ -1,6 +1,6 @@
 # Advanced and legacy APIs
 
-Install `shine-omics>=0.1.0`. The simple `SHINE` API covers the adopted
+Install `shine-omics>=0.1.1`. The simple `SHINE` API covers the adopted
 figure configurations; the lower-level API exposes experimental training modes.
 
 ## Fusion normalization
@@ -174,3 +174,21 @@ SHINE_REFERENCE_EXPERIMENT=/path/to/revision_experiments/brain_dgl_noL2_20261118
 
 ## Notes
 PyTorch is installed with the package. The current API does not require PyTorch Geometric.
+
+## Cross-modal spatial support
+
+`prepare_paired(..., local_k=4)` restricts learned cross-modal attention to the
+paired spot and four other spatial neighbors. `local_k` is independent of
+`spatial_k`, which controls the spatial encoder graph. Omitting `local_k`
+preserves the older behavior: the mask uses `spatial_k` (default 6).
+`local_mask=False` allows attention to every paired spot and keeps the learned
+query, key and value projections. Omit `local_k` in this mode.
+`local_k=0` is a paired-spot-only mask, not unrestricted attention.
+
+The revised analysis preset uses four other neighbors for A1/B1/C1 and six
+for the midbrain and cancer sections. These are choices made after sensitivity
+analysis on the same sections, not independently validated optima. Changing
+the mask requires retraining; applying it to a saved checkpoint does not
+reproduce the matched experiment. The updated Figure 2 manifest refers to newly trained four-neighbor weights,
+metrics, cluster contrasts and enrichment; archived six-neighbor controls retain
+their original settings.

@@ -136,7 +136,7 @@ class SHINE:
     def __init__(self, *, loss='original', l2=False, spatial_floor=0.0,
                  latent_dim=128, correspondence_weight=None, infonce_weight=None,
                  attention_backend='sparse', evaluate_zero_alignment=False):
-        if attention_backend not in ('sparse', 'dense', 'grouped'):
+        if attention_backend not in ('sparse', 'dense', 'grouped', 'grouped_feature'):
             raise ValueError('Unknown attention execution backend.')
         if type(evaluate_zero_alignment) is not bool:
             raise TypeError('evaluate_zero_alignment must be bool.')
@@ -251,7 +251,12 @@ class SHINE:
         options = dict(map_location='cpu')
         if 'weights_only' in inspect.signature(torch.load).parameters:
             options['weights_only'] = False  # Explicit trusted legacy import.
-        checkpoint = torch.load(path, **options)
+        import gzip
+        if str(path).endswith('.gz'):
+            with gzip.open(path, 'rb') as stream:
+                checkpoint = torch.load(stream, **options)
+        else:
+            checkpoint = torch.load(path, **options)
         state = checkpoint.get('model_state')
         if state is None:
             raise ValueError('Legacy checkpoint has no model_state dictionary.')

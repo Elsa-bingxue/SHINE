@@ -3,8 +3,9 @@
 ## Figure settings
 
 `configs/revision_figures.json` records the adopted seven-section settings.
-Every fit uses 120 epochs and final ReLU. L2, loss and spatial attention floor
-are independent options. The settings were explored on these datasets and are
+Every fit uses 120 epochs and final ReLU. L2, loss, spatial attention floor and cross-modal support are independent options.
+The updated striatal figure uses four other attention neighbors; the remaining
+sections use six. The spatial encoder graph stays at six neighbors. The settings were explored on these datasets and are
 not held-out model-selection results.
 
 The section notebooks start from frozen, preprocessed paired matrices. They
@@ -25,12 +26,19 @@ key numerical dependencies are listed in `reference_constraints.txt`.
 execution and are recorded in section settings. They are not additional
 biological model choices.
 
-Saved-model replay matched embeddings and labels in all seven sections. Seven
-fresh seed 123 fits completed 120 epochs. Six matched historical partitions;
+For the previous six-neighbor reference manifest, saved-model replay matched
+embeddings and labels in all seven sections. Seven fresh seed 123 fits completed
+120 epochs. Six matched historical partitions;
 mPD4 differed by 2.0e-6 in its embedding but KMeans selected a different
 partition (partition agreement ARI 0.756). Its original and fresh metrics are
 reported separately. Neither numerical equality across environments nor
 identical clustering after retraining is guaranteed.
+
+The updated A1/B1/C1 four-neighbor checkpoints replay exactly in the tested
+environment, including the normalized embeddings and displayed cluster IDs.
+They use grouped feature attention with native dense cross-attention
+(`attention_backend="grouped_feature"`). This check replays completed weights;
+it is separate from a new end-to-end training run.
 
 ## Propagation
 

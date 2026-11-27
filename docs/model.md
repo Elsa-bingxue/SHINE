@@ -32,8 +32,10 @@ combines the two branch embeddings at each spot. For spatial floor $\rho$,
 $$\alpha_{sp}=\rho+(1-\rho)a_{sp},\qquad \alpha_{feat}=(1-\rho)a_{feat}.$$
 
 RNA embeddings provide queries; MSI embeddings provide keys and values, with
-learned affine projections. Cross-modal attention is restricted to the same
-spot and six nearest spatial neighbors. The name `causal_attention` is retained
+learned affine projections. Cross-modal attention uses the same spot and `local_k` other nearest spatial
+neighbors, independently of the spatial encoder graph. The default is self+6;
+Figure 2 uses self+4 and Figures 3–5 use self+6. Setting `local_mask=False`
+retains learned attention over all paired spots. The name `causal_attention` is retained
 in checkpoint keys; this is spatial masking and does not imply causal inference.
 
 The RNA embedding and attended MSI embedding are concatenated. With `l2=True`,

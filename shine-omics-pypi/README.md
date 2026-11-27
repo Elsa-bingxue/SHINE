@@ -11,7 +11,7 @@ shared spot representation.
 python -m pip install --upgrade shine-omics
 ```
 
-The distribution is `shine-omics`; import it as `shine`. Version 0.1.0 supports
+The distribution is `shine-omics`; import it as `shine`. Version 0.1.1 supports
 Python 3.8–3.11 and installs PyTorch. PyTorch Geometric is not required by the
 current API. For plotting and section notebooks:
 
@@ -54,6 +54,25 @@ per modality; each input must therefore have at least 30 features and spots.
 Graph sizes and PCA dimension can be passed to `prepare_paired` for smaller data.
 No annotation labels are used for training or graph construction.
 
+## Cross-modal neighborhood
+
+```python
+# Keep the spatial encoder graph at k=6; use self plus four other spots for attention.
+data, graphs = prepare_paired(rna, msi, xy, spatial_k=6, local_k=4)
+
+# All-spot attention, with learned query, key and value projections retained.
+data, graphs = prepare_paired(rna, msi, xy, spatial_k=6, local_mask=False)
+```
+
+`local_k` counts other neighbors and is independent of `spatial_k`. Omit it to
+use `spatial_k`, preserving the previous default of self+6. `local_k=0` uses
+the paired spot alone; it does not disable the mask. Omit `local_k` when
+`local_mask=False`. A changed support requires retraining.
+
+Figure 2 uses self+4 for A1/B1/C1; Figures 3–5 use self+6. These settings were
+chosen after sensitivity analysis on the same specimens, not on held-out data.
+The spatial encoder graph remains kNN6 in every section.
+
 ## Model options
 
 | Parameter | Default | Meaning |
@@ -93,7 +112,7 @@ a new fit. Load only trusted checkpoints; optimizer resume is not supported.
 Seven section notebooks cover the SHINE results in Figures 2–5. Spatial panels
 use training seed 123. Summaries use five training seeds (0, 1, 2, 123, 1234),
 with repeated clustering averaged within each fit before computing mean and SD.
-Section settings include optional L2, loss and spatial-weight parameters.
+Section settings include local attention support, L2, loss and spatial-weight parameters.
 
 The source distribution includes `docs/`, `configs/` and a runnable synthetic
 example. These are also installed under `share/shine-omics` in the Python

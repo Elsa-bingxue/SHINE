@@ -3,6 +3,8 @@
 Registration is upstream: this module never guesses correspondence or filters
 spots using region labels. Reproduction uses frozen feature and spot orders.
 """
+from numbers import Integral
+
 import numpy as np
 import scipy.sparse as sp
 import torch
@@ -42,10 +44,15 @@ def _normalized_graph(adjacency):
                                    a.data.astype('float32'), a.shape).coalesce()
 
 
-def build_graphs(rna, msi, xy, *, spatial_k=6, feature_k=20,
+def build_graphs(rna, msi, xy, *, spatial_k=6, feature_k=20, local_mask=True, local_k=None,
                  hyperedge_sizes=(5, 20), pca_components=30, pca_seed=0,
                  sparse_propagation=False, allow_constant_feature_rows=False):
-    """Build the revision's fixed H5+H20 and local self+6 operators.
+    """Build molecular hyperedges, spatial graphs and cross-modal support.
+
+    local_k counts other spatial neighbors and is independent of spatial_k.
+    Omit it to preserve the historical spatial_k-based mask. Set
+    local_mask=False for all-spot attention, retaining learned attention.
+    An explicit local_k=0 permits the paired spot only.
 
     Hyperedge sizes include the center. PCA is fitted separately per modality,
     then each score matrix is divided by its Frobenius norm. No labels enter.
@@ -68,11 +75,24 @@ def build_graphs(rna, msi, xy, *, spatial_k=6, feature_k=20,
     constant_counts = [int((np.std(x, axis=1) == 0).sum()) for x in (rna, msi)]
     if any(constant_counts) and not allow_constant_feature_rows:
         raise ValueError('Constant feature rows make correlation distance undefined.')
+    if not isinstance(local_mask, (bool, np.bool_)):
+        raise ValueError('local_mask must be True or False.')
+    mask_k = spatial_k if local_k is None else local_k
+    if isinstance(mask_k, (bool, np.bool_)) or not isinstance(mask_k, Integral) or not 0 <= mask_k < n:
+        raise ValueError('local_k must be an integer from 0 to n-1, or None.')
+    if not local_mask and local_k is not None:
+        raise ValueError('Omit local_k when local_mask=False; all spots are used.')
     coords = torch.tensor((xy - xy.min(0)) / np.ptp(xy, axis=0))
-    mask = kneighbors_graph(xy, spatial_k, include_self=False).toarray().astype('float32')
-    space = np.maximum(mask, mask.T).astype('float64')
+    spatial_support = kneighbors_graph(xy, spatial_k, include_self=False).toarray().astype('float32')
+    space = np.maximum(spatial_support, spatial_support.T).astype('float64')
     np.fill_diagonal(space, 1)
-    np.fill_diagonal(mask, 1)
+    if not local_mask:
+        mask = np.ones((n, n), dtype='float32')
+    elif mask_k == 0:
+        mask = np.eye(n, dtype='float32')
+    else:
+        mask = kneighbors_graph(xy, mask_k, include_self=False).toarray().astype('float32')
+        np.fill_diagonal(mask, 1)
     parts = []
     for x in (rna, msi):
         z = PCA(pca_components, random_state=pca_seed).fit_transform(x)
@@ -92,6 +112,8 @@ def build_graphs(rna, msi, xy, *, spatial_k=6, feature_k=20,
                 spatial_graph=_normalized_graph(space), causal_mask=torch.tensor(mask),
                 propagation=propagation, incidence=incidence,
                 audit=dict(n_spots=n, spatial_k=spatial_k, feature_k=feature_k,
+                           local_mask=bool(local_mask), local_k=int(mask_k) if local_mask else None,
+                           cross_modal_support="self_plus_neighbors" if local_mask else "all_spots",
                            hyperedge_sizes=list(hyperedge_sizes), n_hyperedges=incidence.shape[1],
                            pca_components=pca_components, pca_seed=pca_seed,
                            constant_feature_rows=constant_counts,

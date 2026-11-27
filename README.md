@@ -8,7 +8,7 @@ It learns a shared representation for tissue partitioning and molecular analysis
 ![SHINE workflow](docs/figures/Figure1.png)
 
 [Figure 1 (PDF)](docs/figures/Figure1.pdf). Registration is performed upstream;
-the package accepts paired, preprocessed inputs. Loss, pre-fusion L2, and the
+the package accepts paired, preprocessed inputs. Cross-modal support, loss, pre-fusion L2, and the
 within-modality spatial weight floor are configurable.
 
 Figure 2 (A1/B1/C1) uses the registered SMA data released with [NicheTrans](https://github.com/YSTLab/NicheTrans). Figure 3 uses the original SMA author pairing. Registration is completed before SHINE training.
@@ -18,7 +18,7 @@ Figure 2 (A1/B1/C1) uses the registered SMA data released with [NicheTrans](http
 Python 3.8–3.11:
 
 ```bash
-python -m pip install "shine-omics[analysis]==0.1.0" jupyterlab
+python -m pip install "shine-omics[analysis]==0.1.1" jupyterlab
 ```
 
 The distribution is `shine-omics`; import it as `shine`. PyTorch Geometric is
@@ -54,15 +54,19 @@ maps, attention weights, and the measured molecular panels for its section.
 | BC_515_S1 breast cancer | 5 | [BC_515_S1](notebooks/07_BC_515_S1_SHINE.ipynb) | 7 | Reconstruction | Off | 0 |
 
 All use 128-dimensional embeddings, 120 epochs, hypergraph propagation, and
-final ReLU. A spatial floor of 0.5 specifies at least 50% spatial-branch weight
+final ReLU. Cross-modal attention uses self+4 in A1/B1/C1 and self+6 elsewhere;
+the spatial encoder graph remains kNN6. Pass `local_k=4` to `prepare_paired`
+to select four neighbors, or `local_mask=False` for all-spot attention. A spatial floor of 0.5 specifies at least 50% spatial-branch weight
 within each modality; it does not set the RNA/MSI mixing ratio.
 
 ## Data and reproduction
 
 Original studies and download links are listed in [data/README.md](data/README.md).
 The processed data archive is not yet publicly released. Saved notebook outputs
-are available to view. To run locally, extract `SHINE_figure_data_v0.1.0.tar.gz`
-into `data/`:
+are available to view. The updated manifest requires the four-neighbor A1/B1/C1
+files in addition to the earlier archive. For the supplied revision package,
+extract `SHINE_figure_data_v0.1.0.tar.gz` into `data/` and copy
+`Updated_Figure_Data/` into the same directory before checking the manifest:
 
 ```bash
 tar -xzf SHINE_figure_data_v0.1.0.tar.gz -C data
@@ -84,7 +88,7 @@ losses and hypergraph operator.
 
 ## Source and earlier workflows
 
-- [Current package source](shine-omics-pypi), matching PyPI 0.1.0.
+- [Current package source](shine-omics-pypi), matching PyPI 0.1.1.
 - [Historical scripts and notebooks](legacy/README.md), retained for earlier results.
 - [Issues](https://github.com/Elsa-bingxue/SHINE/issues).
 

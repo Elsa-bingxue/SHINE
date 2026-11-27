@@ -61,7 +61,8 @@ def _cross(self, x, m, mask):
     return out, weights_all
 
 
-def install_grouped(model):
+def install_grouped(model, *, cross=True):
     for layer in (model.feature_encoder1, model.feature_encoder2):
         layer.forward = types.MethodType(_feature, layer)
-    model.causal_attention.forward = types.MethodType(_cross, model.causal_attention)
+    if cross:
+        model.causal_attention.forward = types.MethodType(_cross, model.causal_attention)

@@ -20,7 +20,10 @@ For the striatum (A1/B1/C1), the notebooks use pre-registered SMA data released 
 ## Frozen inputs for the seven notebooks
 
 `SHINE_figure_data_v0.1.0.tar.gz` is prepared and validated, but has not yet been
-released publicly. The original-study downloads above remain available.
+released publicly. Version 0.1.1 also requires the supplied `Updated_Figure_Data`
+overlay for the four-neighbor A1/B1/C1 fits. Copy its contents into the same
+extraction directory before verification. The original-study downloads above
+remain available.
 The archive contains the exact paired input matrices, coordinates, feature and
 spot order, seed-123 weights, embeddings from five fits, reference labels, and
 molecular tables and tissue display geometry required by the notebooks. It is a reproduction subset, not
@@ -56,8 +59,9 @@ evaluation and descriptive downstream analysis only. Not all paired spots
 have reference labels, so the number scored can be smaller than the number
 used for training.
 
-[replay_files.json](replay_files.json) records every included file and its
-SHA-256. [SHA256SUMS](SHA256SUMS) verifies the compressed download. Raw image
+[replay_files.json](replay_files.json) records the current reproduction files and
+their SHA-256 values, including the updated striatal files.
+[SHA256SUMS](SHA256SUMS) verifies the earlier compressed base archive. Raw image
 registration is upstream and is not repeated by the seven section notebooks.
 The archive provides SHINE reproduction inputs; it does not include every
 external benchmark run or regenerate the full composite manuscript figures.
